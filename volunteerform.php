@@ -1,11 +1,27 @@
 <?php
-/*
-Plugin Name: Volunteer Form
-Plugin URL: http://www.garethwardmp.com.au/
-Description: Plugin for volunteer form
-Version: 1.0
-Author: Nik
-Author URI: http://www.nikcub.com/
+/**
+* Plugin Name: Volunteer Form
+* Plugin URL: https://www.nikcub.com/project/volunteerform
+* Description: Plugin that provides a volunteer form as a shortcode
+* Version: 0.1.0
+* Author: Nik
+* Author URI: https://www.nikcub.com/
+*/
+
+/*  Copyright 2015  Nik Cubrilovic <nikcub@gmail.com>
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License, version 2, as
+    published by the Free Software Foundation.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 $vf_db_version = '0.1';

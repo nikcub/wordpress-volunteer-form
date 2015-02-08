@@ -17,7 +17,7 @@ Generates a volunteer form with submissions available in a new admin section.
 
 1. Upload the `volunteerform` directory to the `/wp-content/plugins/` directory.
 1. Activate the plugin through the 'Plugins' menu in WordPress.
-1. Place `[[volunteer_form]]`  shortcode in any page on the site.
+1. Place `[volunteer_form]`  shortcode in any page on the site.
 
 == Changelog ==
 
