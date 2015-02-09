@@ -25,7 +25,11 @@
 */
 
 $vf_db_version = '0.1';
+define('VF_NAME', 'volunteerform');
 define('VF_DEBUG', true);
+define('VF_DB_VERSION', '0.1');
+define('VF_PATH', dirname(__FILE__));
+define('VF_URL', WP_PLUGIN_URL . '/' . VF_NAME);
 
 function vf_debug($str) {
   if(VD_DEBUG) {
@@ -34,7 +38,10 @@ function vf_debug($str) {
 }
 
 function vf_init() {
-  wp_register_style('vf_style_bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css');
+  wp_register_style('vf_style_bootstrap_hosted', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css');
+  wp_register_style('vf_style_bootstrap', plugins_url('style/volunteerform.css', __file__));
+  wp_register_style('vf_style_bootstrap_min', plugins_url('style/volunteerform.min.css', __file__));
+  // wp_register_style('vf_style_bootstrap_min', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css');
 }
 
 function vf_menu_page() {
@@ -140,7 +147,6 @@ function vf_init_db() {
     time_fri set('6am', '9am', '12pm', '3pm', '6pm'),
     time_sat set('6am', '9am', '12pm', '3pm', '6pm'),
     time_sun set('6am', '9am', '12pm', '3pm', '6pm'),
-    url varchar(55) DEFAULT '' NOT NULL,
     UNIQUE KEY id (id)
   ) $charset_collate;";
 
@@ -209,7 +215,7 @@ function vf_update_db_check() {
 
 register_activation_hook(__FILE__, 'vf_init_db');
 add_action('plugins_loaded', 'vf_update_db_check');
-add_action('admin_init', 'vf_init');
+add_action('init', 'vf_init');
 add_action('admin_menu', 'vf_add_menu');
 
 add_shortcode( 'volunteer_form', 'vf_shortcode' );
