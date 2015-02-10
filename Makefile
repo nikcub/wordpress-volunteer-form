@@ -28,8 +28,8 @@ package:
 	@(test -d .git || echo "ERROR: No git repository found, package building will fail.")
 	git archive --format=tar --prefix=$(PROJECT)/ v$(VERSION) | gzip -c9 > ./pkg/$(PACKAGE).tar.gz
 	git archive --format=zip --prefix=v$(PROJECT)/ v$(VERSION) > ./pkg/$(PACKAGE).zip
-	scp ./pkg/$(PACKAGE).tar.gz s03.do.nikcub.com:/home/virtual/nikcub.com/site
-	scp ./pkg/$(PACKAGE).zip s03.do.nikcub.com:/home/virtual/nikcub.com/site
+	scp ./pkg/$(PACKAGE).tar.gz s03.do.nikcub.com:/home/virtual/nikcub.com/site/downloads/volunteerform/
+	scp ./pkg/$(PACKAGE).zip s03.do.nikcub.com:/home/virtual/nikcub.com/site/downloads/volunteerform/
 
 version:
 	@echo "Version is $(VER)"
