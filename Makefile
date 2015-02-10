@@ -1,6 +1,5 @@
 PROJECT=volunteerform
-VERSION=0.1.0
-VER := $(subst v,,$(lastword $(shell git tag -l 'v*' )))
+VERSION := $(subst v,,$(lastword $(shell git tag -l 'v*' )))
 SITE_LESS = ./assets/style.less
 SITE_CSS = ./style/volunteerform.css
 SITE_CSS_MIN = ./style/volunteerform.min.css
@@ -31,5 +30,8 @@ package:
 	git archive --format=zip --prefix=v$(PROJECT)/ v$(VERSION) > ./pkg/$(PACKAGE).zip
 	scp ./pkg/$(PACKAGE).tar.gz s03.do.nikcub.com:/home/virtual/nikcub.com/site
 	scp ./pkg/$(PACKAGE).zip s03.do.nikcub.com:/home/virtual/nikcub.com/site
+
+version:
+	@echo "Version is $(VER)"
 
 .PHONY: watch site-css
