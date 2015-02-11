@@ -38,22 +38,35 @@ function vf_debug($str) {
 }
 
 function vf_init() {
+  $options = get_option('vf_settings');
+  if(isset($options['debug'])) {
+    define('VF_DEBUG', true);
+  }
+  if(isset($options['cdn'])) {
+    define('VF_CDN', true);
+  } else {
+    define('VF_CDN', false);
+  }
+  if(isset($options['cssmin'])) {
+    define('VF_CSSMIN', true);
+  } else {
+    define('VF_CSSMIN', false);
+  }
+
   wp_register_style('vf_style_bootstrap_hosted', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css');
   wp_register_style('vf_style_bootstrap', plugins_url('style/volunteerform.css', __file__));
   wp_register_style('vf_style_bootstrap_min', plugins_url('style/volunteerform.min.css', __file__));
   // wp_register_style('vf_style_bootstrap_min', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css');
 }
 
-function vf_menu_page() {
-  if(!current_user_can('manage_options')) {
-    wp_die(__('You do not have sufficient permissions to access this page.'));
-  }
-  $volunteers = vf_db_fetch();
-  include(sprintf("%s/templates/list.php", dirname(__FILE__)));
-}
-
 function vf_html_form() {
-  wp_enqueue_style('vf_style_bootstrap');
+  if(VF_CDN) {
+    wp_enqueue_style('vf_style_bootstrap_hosted');
+  } else if (VF_CSSMIN) {
+    wp_enqueue_style('vf_style_bootstrap_min');
+  } else {
+    wp_enqueue_style('vf_style_bootstrap');
+  }
   include(sprintf("%s/templates/form.php", dirname(__FILE__)));
 }
 
@@ -199,11 +212,36 @@ function vf_plugin_settings_page() {
 
 function vf_add_menu() {
   add_menu_page('Volunteers', 'Volunteers', 'manage_options', 'vf-menu-handle', 'vf_menu_page');
-  // add_submenu_page( 'my-top-level-handle', 'Page title', 'Sub-menu title', 'manage_options', 'my-submenu-handle', 'my_magic_function');
+  add_submenu_page('vf-menu-handle', 'Volunteers', 'List', 'manage_options', 'vf-menu-handle', 'vf_menu_page');
+  add_submenu_page('vf-menu-handle', 'Settings', 'Settings', 'manage_options', 'vf-menu-settings', 'vf_menu_settings');
+
+  // add_menu_page('My Custom Page', 'My Custom Page', 'manage_options', 'my-top-level-slug');
+  // add_submenu_page( 'my-top-level-slug', 'My Custom Page', 'My Custom Page', 'manage_options', 'my-top-level-slug');
+  // add_submenu_page( 'my-top-level-slug', 'My Custom Submenu Page', 'My Custom Submenu Page', 'manage_options', 'my-secondary-slug');
+}
+
+function vf_menu_page() {
+  if(!current_user_can('manage_options')) {
+    wp_die(__('You do not have sufficient permissions to access this page.'));
+  }
+  $volunteers = vf_db_fetch();
+  include(sprintf("%s/templates/list.php", dirname(__FILE__)));
+}
+
+function vf_menu_settings() {
+  if(!current_user_can('manage_options')) {
+    wp_die(__('You do not have sufficient permissions to access this page.'));
+  }
+  include(sprintf("%s/templates/settings.php", dirname(__FILE__)));
 }
 
 function vf_init_settings() {
   register_setting('wp_plugin_template-group', 'setting_a');
+}
+
+function vf_init_admin() {
+  register_setting( 'vf_options', 'vf_settings' );
+  // register_setting( 'vf_options', 'vf_debug' );
 }
 
 function vf_update_db_check() {
@@ -217,6 +255,7 @@ register_activation_hook(__FILE__, 'vf_init_db');
 add_action('plugins_loaded', 'vf_update_db_check');
 add_action('init', 'vf_init');
 add_action('admin_menu', 'vf_add_menu');
+add_action('admin_init', 'vf_init_admin');
 
 add_shortcode( 'volunteer_form', 'vf_shortcode' );
 

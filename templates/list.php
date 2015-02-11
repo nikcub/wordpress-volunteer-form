@@ -28,23 +28,3 @@
     </table>
 </div>
 
-<div class="wrap">
-    <h2>Volunteer Settings</h2>
-    <form method="post" action="options.php">
-        <?php @settings_fields('wp_plugin_template-group'); ?>
-        <?php @do_settings_fields('wp_plugin_template-group'); ?>
-
-        <table class="form-table">
-            <tr valign="top">
-                <th scope="row"><label for="setting_a">Debug</label></th>
-                <td><input type="checkbox" name="vf_setting_debug" id="vf_setting_debug" value="<?php echo get_option('vf_setting_debug'); ?>" /></td>
-            </tr>
-            <tr valign="top">
-                <th scope="row"><label for="setting_a">Host CSS from CDN</label></th>
-                <td><input type="checkbox" name="vf_setting_cdn" id="vf_setting_cdn" value="<?php echo get_option('vf_setting_cdn'); ?>" /></td>
-            </tr>
-        </table>
-
-        <?php @submit_button(); ?>
-    </form>
-</div>
