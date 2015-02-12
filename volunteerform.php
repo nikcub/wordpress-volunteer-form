@@ -3,7 +3,7 @@
 * Plugin Name: Volunteer Form
 * Plugin URL: https://www.nikcub.com/project/volunteerform
 * Description: Plugin that provides a volunteer form as a shortcode
-* Version: 0.1.0
+* Version: 0.1.2
 * Author: Nik
 * Author URI: https://www.nikcub.com/
 */
@@ -53,7 +53,7 @@ function vf_init() {
     define('VF_CSSMIN', false);
   }
 
-  wp_register_style('vf_style_bootstrap_hosted', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css');
+  wp_register_style('vf_style_bootstrap_hosted', '://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css');
   wp_register_style('vf_style_bootstrap', plugins_url('style/volunteerform.css', __file__));
   wp_register_style('vf_style_bootstrap_min', plugins_url('style/volunteerform.min.css', __file__));
   // wp_register_style('vf_style_bootstrap_min', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css');
@@ -115,11 +115,11 @@ function vf_form_submit() {
     $data['phone_w'] = $_POST['phone_w'];
     $data['phone_m'] = $_POST['phone_m'];
 
+    $data = array_map(addslashes, $data);
     $r = vf_insert_record($data);
     if($r == 1)
       return true;
-    print "Error with form";
-    // vf_debug()
+
     if(VF_DEBUG) {
       $wpdb->print_error();
       print 'error';

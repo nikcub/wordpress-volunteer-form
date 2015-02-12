@@ -77,16 +77,37 @@
       <label for="address" class="vf-form-label control-label">How you can assist:</label>
       <div class="vf-form-field">
         <label class="radio-inline">
-          <input type="checkbox" name="assist" id="assist" value="phone"> Phone canvassing
+          <input type="checkbox" name="assist" id="assist" value="canvasing"> Phone canvassing
         </label>
         <label class="radio-inline">
-          <input type="checkbox" name="assist" id="assist" value="phone"> Phone canvassing
+          <input type="checkbox" name="assist" id="assist" value="door knocking"> Door knocking
         </label>
         <label class="radio-inline">
-          <input type="checkbox" name="assist" id="assist" value="phone"> Phone canvassing
+          <input type="checkbox" name="assist" id="assist" value="street stalls"> Street Stalls
         </label>
         <label class="radio-inline">
-          <input type="checkbox" name="assist" id="assist" value="phone"> Phone canvassing
+          <input type="checkbox" name="assist" id="assist" value="letterboxing"> Letterboxing
+        </label>
+        <label class="radio-inline">
+          <input type="checkbox" name="assist" id="assist" value="sign"> Sign site
+        </label>
+        <label class="radio-inline">
+          <input type="checkbox" name="assist" id="assist" value="radio"> Talkback Radio
+        </label>
+        <label class="radio-inline">
+          <input type="checkbox" name="assist" id="assist" value="letters editor"> Letters to editor
+        </label>
+        <label class="radio-inline">
+          <input type="checkbox" name="assist" id="assist" value="office"> Campaign office staff
+        </label>
+        <label class="radio-inline">
+          <input type="checkbox" name="assist" id="assist" value="commuter"> Commuter hub campaigning
+        </label>
+        <label class="radio-inline">
+          <input type="checkbox" name="assist" id="assist" value="polling day"> Polling day assistance
+        </label>
+        <label class="radio-inline">
+          <input type="checkbox" name="assist" id="assist" value="other"> Other (specify below)
         </label>
 
       </div>
