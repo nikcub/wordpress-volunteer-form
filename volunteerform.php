@@ -3,7 +3,7 @@
 * Plugin Name: Volunteer Form
 * Plugin URL: https://www.nikcub.com/project/volunteerform
 * Description: Plugin that provides a volunteer form as a shortcode
-* Version: 0.1.2
+* Version: 0.1.3
 * Author: Nik
 * Author URI: https://www.nikcub.com/
 */
@@ -24,7 +24,7 @@
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-$vf_db_version = '0.1';
+$vf_db_version = '0.1.1';
 define('VF_NAME', 'volunteerform');
 define('VF_DEBUG', true);
 define('VF_DB_VERSION', '0.1');
@@ -100,9 +100,23 @@ function vf_form_submit() {
       'phone_h' => '',
       'phone_w' => '',
       'phone_m' => '',
+      'assist' => '',
+      'assist_other' => '',
+      'time_mon' => '',
+      'time_tue' => '',
+      'time_wed' => '',
+      'time_thu' => '',
+      'time_fri' => '',
+      'time_sat' => '',
+      'time_sun' => '',
     );
 
   if (isset($_POST['vf-form-submit'])) {
+    foreach($data as $k) {
+      if(!isset($_POST[$data])) {
+        $_POST[$data] = '';
+      }
+    }
     $data['firstname'] = $_POST['firstname'];
     $data['surname'] = $_POST['surname'];
     $data['address1'] = $_POST['address1'];
@@ -114,6 +128,15 @@ function vf_form_submit() {
     $data['phone_h'] = $_POST['phone_h'];
     $data['phone_w'] = $_POST['phone_w'];
     $data['phone_m'] = $_POST['phone_m'];
+    $data['assist'] = vf_pack_set($_POST['assist']);
+    $data['assist_other'] = $_POST['assist_other'];
+    $data['time_mon'] = vf_pack_set($_POST['time_mon']);
+    $data['time_tue'] = vf_pack_set($_POST['time_tue']);
+    $data['time_wed'] = vf_pack_set($_POST['time_wed']);
+    $data['time_thu'] = vf_pack_set($_POST['time_thu']);
+    $data['time_fri'] = vf_pack_set($_POST['time_fri']);
+    $data['time_sat'] = vf_pack_set($_POST['time_sat']);
+    $data['time_sun'] = vf_pack_set($_POST['time_sun']);
 
     $data = array_map(addslashes, $data);
     $r = vf_insert_record($data);
@@ -127,6 +150,10 @@ function vf_form_submit() {
   }
 
   return false;
+}
+
+function vf_pack_set($val) {
+  return join(",", $val);
 }
 
 function vf_init_db() {
@@ -186,7 +213,19 @@ function vf_insert_record($data) {
       'suburb' => $data['suburb'],
       'postcode' => $data['postcode'],
       'branch' => $data['branch'],
-      'email' => $data['email']
+      'email' => $data['email'],
+      'phone_h' => $data['phone_h'],
+      'phone_w' => $data['phone_w'],
+      'phone_m' => $data['phone_m'],
+      'assist' => $data['assist'],
+      'assist_other' => $data['assist_other'],
+      'time_mon' => $data['time_mon'],
+      'time_tue' => $data['time_tue'],
+      'time_wed' => $data['time_wed'],
+      'time_thu' => $data['time_thu'],
+      'time_fri' => $data['time_fri'],
+      'time_sat' => $data['time_sat'],
+      'time_sun' => $data['time_sun'],
   ));
 
   return $r;

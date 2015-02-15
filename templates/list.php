@@ -10,6 +10,7 @@
         <td>Branch</td>
         <td>Email</td>
         <td>Phone</td>
+        <td>Assist</td>
       </tr>
     </thead>
     <tbody id="the-list">
@@ -22,6 +23,7 @@
           <td><?php echo $v->branch ?></td>
           <td><?php echo $v->email ?></td>
           <td><?php echo $v->phone_h ?></td>
+          <td><?php echo $v->assist ?></td>
         </tr>
       <?php } ?>
     </tbody>
