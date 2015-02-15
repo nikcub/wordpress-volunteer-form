@@ -3,7 +3,7 @@
 * Plugin Name: Volunteer Form
 * Plugin URL: https://www.nikcub.com/project/volunteerform
 * Description: Plugin that provides a volunteer form as a shortcode
-* Version: 0.1.3
+* Version: 0.1.4
 * Author: Nik
 * Author URI: https://www.nikcub.com/
 */
