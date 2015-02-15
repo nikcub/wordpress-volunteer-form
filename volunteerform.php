@@ -26,7 +26,7 @@
 
 $vf_db_version = '0.1.1';
 define('VF_NAME', 'volunteerform');
-define('VF_DEBUG', true);
+define('VF_DEBUG', false);
 define('VF_DB_VERSION', '0.1');
 define('VF_PATH', dirname(__FILE__));
 define('VF_URL', WP_PLUGIN_URL . '/' . VF_NAME);
