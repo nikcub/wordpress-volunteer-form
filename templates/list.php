@@ -1,5 +1,5 @@
 <div class="wrap">
-    <h2>Volunteer Submissions <a href="http://wordpress.dev/wp-admin/post-new.php" class="add-new-h2">Download Spreadsheet</a></h2>
+    <h2>Volunteer Submissions <a href="<?php echo VF_EXPORT_URL; ?>" class="add-new-h2">Download Spreadsheet</a></h2>
     <table class="wp-list-table widefat fixed posts">
     <thead>
       <tr>

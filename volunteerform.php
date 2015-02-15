@@ -30,6 +30,7 @@ define('VF_DEBUG', true);
 define('VF_DB_VERSION', '0.1');
 define('VF_PATH', dirname(__FILE__));
 define('VF_URL', WP_PLUGIN_URL . '/' . VF_NAME);
+define('VF_EXPORT_URL', VF_URL . '/' . 'excel.php');
 
 function vf_debug($str) {
   if(VD_DEBUG) {
@@ -112,8 +113,8 @@ function vf_form_submit() {
     );
 
   if (isset($_POST['vf-form-submit'])) {
-    foreach($data as $k) {
-      if(!isset($_POST[$data])) {
+    foreach($data as $k => $v) {
+      if(!isset($_POST[$k])) {
         $_POST[$data] = '';
       }
     }
