@@ -1,0 +1,4 @@
+.gitattributes export-ignore
+/assets/bootstrap export-ignore
+/pkg export-ignore
+Makefile export-ignore
